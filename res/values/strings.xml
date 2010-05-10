@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="editNewTask">Enter your new task</string>
+    <string name="buttonNewTask">New</string>
+    <string name="sortAll">Sort all</string>
+    <string name="removeAll">Remove all</string>
+    <string name="removeItem">Remove this task</string>
+    <string name="editItem">Edit this task</string>
+    <string name="app_name">ToDo</string>
+</resources>
