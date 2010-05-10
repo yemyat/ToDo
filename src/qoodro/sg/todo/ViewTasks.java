@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ViewTasks extends ListActivity {
 	/** Called when the activity is first created. */
@@ -69,6 +70,7 @@ public class ViewTasks extends ListActivity {
 						if(editNewTask.getText().length() > 0 ) {
 							addNewTask(editNewTask.getText().toString());
 							editNewTask.setText("");
+							
 							return true;
 						} else {
 							alertUser("Invalid input");
@@ -81,12 +83,11 @@ public class ViewTasks extends ListActivity {
 
 	}
 
-	private void alertUser(String message) {
-		new AlertDialog.Builder(this).setTitle("Alert!").setMessage(message).setNeutralButton("Close", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dlg, int sumthin) {
-				// do nothing – it will close on its own
-			}
-		}).show();
+
+	private void addNewTask(String task) {
+		arrayTasks.add(task);
+		arrayTaskAdapter.notifyDataSetChanged();
+		Toast.makeText(getBaseContext(), "Added new task",Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
@@ -143,6 +144,7 @@ public class ViewTasks extends ListActivity {
 					arrayTasks.remove(index);
 					arrayTasks.add(index, editNewTask.getText().toString());
 					arrayTaskAdapter.notifyDataSetChanged();
+					Toast.makeText(getBaseContext(), "Saved",Toast.LENGTH_SHORT).show();
 					buttonNewTask.setText("Add");
 					editNewTask.setText("");
 					buttonNewTask.setOnClickListener(new OnClickListener(){
@@ -163,11 +165,21 @@ public class ViewTasks extends ListActivity {
 		}
 		return false;
 	}
+
+	private void alertUser(String message) {
+		new AlertDialog.Builder(this).setTitle("Alert!").setMessage(message).setNeutralButton("Close", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dlg, int sumthin) {
+				// do nothing – it will close on its own
+			}
+		}).show();
+	}
+
 	private void promptUserRemoveAll(String message){
 		new AlertDialog.Builder(this).setTitle("Alert!").setMessage(message).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dlg, int sumthin) {
 				arrayTasks.clear();
 				arrayTaskAdapter.notifyDataSetChanged();
+				Toast.makeText(getBaseContext(), "Tasks removed",Toast.LENGTH_SHORT).show();
 			}
 		}).setNegativeButton("No", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dlg, int sumthin) {
@@ -181,6 +193,7 @@ public class ViewTasks extends ListActivity {
 
 				arrayTasks.remove(index);
 				arrayTaskAdapter.notifyDataSetChanged();
+				Toast.makeText(getBaseContext(), "Task removed",Toast.LENGTH_SHORT).show();
 			}
 		}).setNegativeButton("No", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dlg, int sumthin) {
@@ -188,8 +201,4 @@ public class ViewTasks extends ListActivity {
 			}}).show();
 	}
 
-	private void addNewTask(String task) {
-		arrayTasks.add(task);
-		arrayTaskAdapter.notifyDataSetChanged();
-	}
 }

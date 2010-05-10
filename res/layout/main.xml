@@ -6,7 +6,7 @@
 		android:layout_height="wrap_content" android:paddingTop="10px">
 		<EditText android:id="@+id/editNewTask" android:hint="@string/editNewTask"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_weight="1"></EditText>
+			android:layout_weight="1" android:singleLine="true"></EditText>
 		<Button android:id="@+id/buttonNewTask" android:text="@string/buttonNewTask"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:layout_weight="3">
